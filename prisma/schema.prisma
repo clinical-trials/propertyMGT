@@ -1,0 +1,86 @@
+// propertymgt — slice 1 data model
+// sqlite for local dev; swap datasource to postgres when deployed.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Landlord {
+  id         String     @id @default(cuid())
+  name       String
+  email      String?
+  phone      String?
+  properties Property[]
+  createdAt  DateTime   @default(now())
+}
+
+model Property {
+  id         String   @id @default(cuid())
+  landlord   Landlord @relation(fields: [landlordId], references: [id])
+  landlordId String
+
+  // raw + parsed address
+  rawAddress String
+  street     String?
+  unit       String?
+  city       String?
+  state      String?
+  zip        String?
+
+  units     Unit[]
+  quotes    Quote[]
+  createdAt DateTime @default(now())
+}
+
+model Unit {
+  id          String   @id @default(cuid())
+  property    Property @relation(fields: [propertyId], references: [id])
+  propertyId  String
+
+  beds        Int?
+  baths       Float?
+  sqft        Int?
+  statedRent  Int?
+  description  String?
+  photos      String?  // json array of urls
+  condition   String?  // e.g. "good", "fair", "needs work"
+  status      String   @default("draft") // draft | review | ready
+
+  listings    Listing[]
+  quotes      Quote[]
+  createdAt   DateTime @default(now())
+}
+
+model Listing {
+  id                 String   @id @default(cuid())
+  unit               Unit     @relation(fields: [unitId], references: [id])
+  unitId             String
+
+  sourceUrl          String
+  platform           String?  // turbotenant | zillow | craigslist | marketplace | other
+  rawExtract         String?  // json of extracted fields
+  reviewStatus       String   @default("review") // review | confirmed
+  ownershipConfirmed Boolean  @default(false)
+  importedAt         DateTime @default(now())
+}
+
+model Quote {
+  id                    String   @id @default(cuid())
+  property              Property @relation(fields: [propertyId], references: [id])
+  propertyId            String
+  unit                  Unit     @relation(fields: [unitId], references: [id])
+  unitId                String
+
+  inputsSnapshot        String   // json of the inputs used
+  marketRent            Int
+  managementFeePct      Float
+  managementFeeMonthly  Int
+  guaranteedMonthly     Int
+  breakdown             String   // json: cited factors + contributions
+  createdAt             DateTime @default(now())
+}

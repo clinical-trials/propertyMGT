@@ -1,0 +1,31 @@
+/* minimal foundation only — the real editorial design pass comes next. */
+
+:root {
+  --font-fraunces: Georgia, "Times New Roman", serif;
+  --font-inter: system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-inter);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-fraunces);
+  font-weight: 400;
+}
