@@ -1,5 +1,7 @@
 import QuoteStudio from "./_components/QuoteStudio";
 import ImportDemo from "./_components/ImportDemo";
+import SiteHeader from "./_components/SiteHeader";
+import SiteFooter from "./_components/SiteFooter";
 
 const LADDER: { name: string; note: string; tag?: string; soon?: boolean }[] = [
   { name: "screening", note: "income, credit, and background — a vetted renter, once.", tag: "where we start" },
@@ -14,20 +16,7 @@ const LADDER: { name: string; note: string; tag?: string; soon?: boolean }[] = [
 export default function Home() {
   return (
     <>
-      <header className="topbar">
-        <div className="wrap">
-          <span className="brandmark">
-            <b>propertymgt</b>
-            <span className="dot">.</span>
-          </span>
-          <nav>
-            <a href="#quote">a quote</a>
-            <a href="#how">how it works</a>
-            <a href="#ladder">the ladder</a>
-            <a href="#import">import a listing</a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main>
         <section className="hero">
@@ -148,15 +137,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="wrap">
-          <span className="brandmark">
-            <b>propertymgt</b>
-            <span className="dot">.</span>
-          </span>
-          <span className="muted">built in the open · albuquerque, new mexico</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
