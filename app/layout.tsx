@@ -21,6 +21,11 @@ export const metadata: Metadata = {
     "guaranteed rent, full-service management, and the deepest sleep in real estate. a property platform for small landlords in new mexico.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: {

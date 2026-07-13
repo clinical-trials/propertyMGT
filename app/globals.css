@@ -187,12 +187,76 @@ button {
 .loginlink:hover {
   color: var(--ink);
 }
+
+/* hamburger toggle — hidden on desktop */
+.navtoggle {
+  display: none;
+  margin-left: auto;
+  width: 44px;
+  height: 44px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.navtoggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+.navtoggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navtoggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.navtoggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* dropdown menu panel */
+.mobilemenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 14px 26px -18px rgba(58, 46, 34, 0.5);
+  padding: 0.5rem var(--gutter) 1.15rem;
+}
+.mobilemenu a {
+  padding: 0.85rem 0;
+  font-size: 1.08rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+.mobilemenu .loginlink {
+  color: var(--ink-soft);
+}
+.mobilemenu .btn-coral {
+  justify-content: center;
+  border-bottom: none;
+  margin-top: 0.9rem;
+  padding: 0.8rem 1.15rem;
+  color: var(--cream-on-dark);
+}
+
 @media (max-width: 780px) {
-  .mainnav {
+  .mainnav,
+  .navauth {
     display: none;
   }
-  .navauth {
-    margin-left: auto;
+  .navtoggle {
+    display: flex;
   }
 }
 
@@ -919,6 +983,22 @@ button {
   font-family: var(--font-fraunces);
   font-size: 1.5rem;
   line-height: 1.1;
+}
+
+/* ---- small-screen polish ---- */
+@media (max-width: 560px) {
+  .cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cta-row .btn,
+  .cta-row .btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+  .import-row .btn {
+    width: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

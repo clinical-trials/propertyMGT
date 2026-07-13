@@ -68,7 +68,7 @@ export default function ImportDemo() {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
-        <button className="btn" style={{ width: "auto", marginTop: 0 }} onClick={() => run(url)}>
+        <button className="btn" onClick={() => run(url)}>
           bring it over
         </button>
       </div>

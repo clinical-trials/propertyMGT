@@ -135,7 +135,7 @@ export default function VerifyStudio() {
 
       {error && <p className="form-error">{error}</p>}
 
-      <button className="btn" type="button" onClick={generate}>
+      <button className="btn btn--block" type="button" onClick={generate}>
         create my vetted profile
       </button>
 

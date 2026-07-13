@@ -126,7 +126,7 @@ export default function QuoteStudio() {
           </label>
         </div>
 
-        <button className="btn" type="submit">
+        <button className="btn btn--block" type="submit">
           show my offers
         </button>
       </form>
