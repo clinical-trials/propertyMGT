@@ -345,12 +345,17 @@ button {
   align-items: center;
   color: var(--cream-on-dark);
 }
-.hero-scene {
+.hero-scene,
+.hero-photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
+}
+.hero-photo {
+  object-fit: cover;
+  object-position: center;
 }
 .hero-scrim {
   position: absolute;

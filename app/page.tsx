@@ -1,8 +1,21 @@
+import fs from "fs";
+import path from "path";
 import QuoteStudio from "./_components/QuoteStudio";
 import ImportDemo from "./_components/ImportDemo";
 import SiteHeader from "./_components/SiteHeader";
 import SiteFooter from "./_components/SiteFooter";
 import HeroScene from "./_components/HeroScene";
+
+// use a real photo if one is dropped into /public (hero.jpg/png/webp),
+// otherwise fall back to the drawn desert scene. checked at build time.
+function heroPhoto(): string | null {
+  const dir = path.join(process.cwd(), "public");
+  for (const f of ["hero.jpg", "hero.jpeg", "hero.png", "hero.webp"]) {
+    if (fs.existsSync(path.join(dir, f))) return f;
+  }
+  return null;
+}
+const ASSET_PREFIX = process.env.NODE_ENV === "production" ? "/propertyMGT" : "";
 
 const LADDER: { name: string; note: string; tag?: string; soon?: boolean }[] = [
   { name: "screening", note: "income, credit, and background — a vetted renter, once.", tag: "where we start" },
@@ -21,6 +34,7 @@ const ARROW = (
 );
 
 export default function Home() {
+  const photo = heroPhoto();
   return (
     <>
       <SiteHeader />
@@ -28,7 +42,16 @@ export default function Home() {
       <main>
         <section className="herofull">
           <div className="hero-card">
-            <HeroScene />
+            {photo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                className="hero-photo"
+                src={`${ASSET_PREFIX}/${photo}`}
+                alt="a desert courtyard with a hammock at golden hour"
+              />
+            ) : (
+              <HeroScene />
+            )}
             <div className="hero-scrim" aria-hidden="true" />
             <div className="hero-copy">
               <h1>You bought a rental to work less. So work less.</h1>
