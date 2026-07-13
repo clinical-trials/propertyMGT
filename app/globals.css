@@ -148,9 +148,8 @@ button {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: color-mix(in srgb, var(--cream) 88%, transparent);
-  backdrop-filter: saturate(1.15) blur(9px);
-  border-bottom: 1px solid var(--line);
+  background: var(--gold);
+  border-bottom: 1px solid var(--gold-deep);
 }
 .topbar .wrap {
   display: flex;
@@ -164,16 +163,18 @@ button {
 }
 .topbar .wm {
   font-size: 1.55rem;
+  color: var(--cream-on-dark);
 }
 .mainnav {
   display: flex;
   gap: 1.5rem;
   margin-left: auto;
   font-size: 0.96rem;
-  color: var(--ink-soft);
+  font-weight: 500;
+  color: color-mix(in srgb, var(--cream-on-dark) 88%, transparent);
 }
 .mainnav a:hover {
-  color: var(--ink);
+  color: var(--cream-on-dark);
 }
 .navauth {
   display: flex;
@@ -182,10 +183,10 @@ button {
 }
 .loginlink {
   font-size: 0.96rem;
-  color: var(--ink-soft);
+  color: color-mix(in srgb, var(--cream-on-dark) 88%, transparent);
 }
 .loginlink:hover {
-  color: var(--ink);
+  color: var(--cream-on-dark);
 }
 
 /* hamburger toggle — hidden on desktop */
@@ -207,7 +208,7 @@ button {
   width: 22px;
   height: 2px;
   border-radius: 2px;
-  background: var(--ink);
+  background: var(--cream-on-dark);
   transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
 }
 .navtoggle[aria-expanded="true"] span:nth-child(1) {
@@ -329,63 +330,66 @@ button {
   background: color-mix(in srgb, var(--cream-on-dark) 12%, transparent);
 }
 
-/* ---- hero band (home) ---- */
+/* ---- hero: framed desert card with the hammock scene ---- */
 .herofull {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(158deg, #6f4a2c 0%, #a9743f 48%, var(--gold) 100%);
-  color: var(--cream-on-dark);
-  padding-block: clamp(3.5rem, 9vw, 7rem);
-  border-bottom: 1px solid var(--gold-deep);
+  background: var(--gold);
+  padding: clamp(0.55rem, 1.6vw, 1.1rem);
 }
-.sun-decor {
+.hero-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 22px;
+  min-height: clamp(380px, 52vw, 600px);
+  display: flex;
+  align-items: center;
+  color: var(--cream-on-dark);
+}
+.hero-scene {
   position: absolute;
-  right: clamp(-6rem, 2vw, 4rem);
-  top: 12%;
-  width: clamp(16rem, 34vw, 30rem);
-  aspect-ratio: 2 / 1;
-  border-radius: 999rem 999rem 0 0;
-  background: radial-gradient(
-    120% 200% at 50% 100%,
-    var(--sun) 0%,
-    color-mix(in srgb, var(--sun) 70%, transparent) 55%,
-    transparent 72%
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    95deg,
+    rgba(46, 30, 18, 0.86) 0%,
+    rgba(46, 30, 18, 0.55) 34%,
+    rgba(46, 30, 18, 0.12) 58%,
+    rgba(46, 30, 18, 0) 78%
   );
-  opacity: 0.85;
-  pointer-events: none;
 }
 .hero-copy {
   position: relative;
-  z-index: 1;
-  max-width: 20ch;
-}
-.eyebrow--onhero {
-  color: var(--sun);
-}
-.eyebrow--onhero::before {
-  background: var(--sun);
+  z-index: 2;
+  max-width: 62%;
+  padding: clamp(1.4rem, 4.5vw, 4rem);
 }
 .herofull h1 {
-  font-size: clamp(2.5rem, 6.6vw, 5.1rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
   color: var(--cream-on-dark);
   letter-spacing: -0.025em;
   font-weight: 600;
   line-height: 1.02;
-}
-.herofull h1 .accent {
-  color: var(--coral);
+  text-shadow: 0 2px 26px rgba(38, 24, 14, 0.4);
 }
 .herofull .lede {
-  margin-top: 1.4rem;
-  max-width: 34ch;
-  font-size: clamp(1.08rem, 1.6vw, 1.32rem);
-  color: color-mix(in srgb, var(--cream-on-dark) 90%, transparent);
+  margin-top: 1.3rem;
+  max-width: 32ch;
+  font-size: clamp(1.08rem, 1.6vw, 1.3rem);
+  color: color-mix(in srgb, var(--cream-on-dark) 92%, transparent);
+  text-shadow: 0 1px 18px rgba(38, 24, 14, 0.35);
 }
 .cta-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
-  margin-top: 2rem;
+  margin-top: 1.9rem;
 }
 
 /* ---- plain hero (renters) ---- */
@@ -993,28 +997,34 @@ button {
     height: 58px;
   }
   .herofull {
-    padding-block: 1.5rem 2.25rem;
+    padding: 0.5rem;
+  }
+  .hero-card {
+    min-height: clamp(430px, 96vw, 560px);
+  }
+  .hero-scrim {
+    background: linear-gradient(
+      115deg,
+      rgba(46, 30, 18, 0.9) 0%,
+      rgba(46, 30, 18, 0.66) 52%,
+      rgba(46, 30, 18, 0.42) 100%
+    );
   }
   .hero-copy {
-    max-width: none;
-  }
-  .eyebrow--onhero {
-    margin-bottom: 0.6rem;
+    max-width: 100%;
+    padding: 1.5rem 1.4rem 1.9rem;
   }
   .herofull h1 {
-    font-size: clamp(2.35rem, 8.5vw, 3.4rem);
-    line-height: 1.03;
+    font-size: clamp(2.3rem, 8.6vw, 3.3rem);
+    line-height: 1.04;
   }
   .herofull .lede {
     margin-top: 0.85rem;
-    font-size: 1.06rem;
+    max-width: 40ch;
+    font-size: 1.05rem;
   }
   .cta-row {
-    margin-top: 1.2rem;
-  }
-  .sun-decor {
-    top: 6%;
-    opacity: 0.7;
+    margin-top: 1.25rem;
   }
 }
 

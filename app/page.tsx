@@ -2,6 +2,7 @@ import QuoteStudio from "./_components/QuoteStudio";
 import ImportDemo from "./_components/ImportDemo";
 import SiteHeader from "./_components/SiteHeader";
 import SiteFooter from "./_components/SiteFooter";
+import HeroScene from "./_components/HeroScene";
 
 const LADDER: { name: string; note: string; tag?: string; soon?: boolean }[] = [
   { name: "screening", note: "income, credit, and background — a vetted renter, once.", tag: "where we start" },
@@ -26,28 +27,22 @@ export default function Home() {
 
       <main>
         <section className="herofull">
-          <div className="wrap">
+          <div className="hero-card">
+            <HeroScene />
+            <div className="hero-scrim" aria-hidden="true" />
             <div className="hero-copy">
-              <p className="eyebrow eyebrow--onhero">property owners · new mexico</p>
-              <h1>
-                You bought a rental to work less.{" "}
-                <span className="accent">So work less.</span>
-              </h1>
+              <h1>You bought a rental to work less. So work less.</h1>
               <p className="lede">
                 Guaranteed rent, full-service management, and the deepest sleep in
                 real estate.
               </p>
               <div className="cta-row">
                 <a href="#quote" className="btn btn--hero">
-                  start your siesta
-                </a>
-                <a href="#earn" className="btn-ghost btn-ghost--onhero">
-                  more ways to earn
+                  Start your Siesta
                 </a>
               </div>
             </div>
           </div>
-          <div className="sun-decor" aria-hidden="true" />
         </section>
 
         <section className="section" id="quote">
