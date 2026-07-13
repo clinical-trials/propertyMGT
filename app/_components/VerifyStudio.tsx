@@ -53,7 +53,7 @@ export default function VerifyStudio() {
       <h2>get vetted once</h2>
       <p className="sub">
         set up the checks a landlord needs. share one profile, apply anywhere on
-        propertymgt.
+        siesta.
       </p>
 
       <label className="field">
@@ -128,8 +128,8 @@ export default function VerifyStudio() {
           onChange={(e) => setFcra(e.target.checked)}
         />
         <span>
-          i authorize propertymgt and its screening partners to obtain these
-          reports (fcra authorization).
+          i authorize siesta and its screening partners to obtain these reports
+          (fcra authorization).
         </span>
       </label>
 

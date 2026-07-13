@@ -13,37 +13,62 @@ const LADDER: { name: string; note: string; tag?: string; soon?: boolean }[] = [
   { name: "the next property", note: "when you're ready to buy another, we help.", soon: true },
 ];
 
+const ARROW = (
+  <span className="arrow" aria-hidden="true">
+    ↗
+  </span>
+);
+
 export default function Home() {
   return (
     <>
       <SiteHeader />
 
       <main>
-        <section className="hero">
-          <div className="wrap hero-grid">
-            <div>
-              <p className="eyebrow">property management, new mexico</p>
+        <section className="herofull">
+          <div className="wrap">
+            <div className="hero-copy">
+              <p className="eyebrow eyebrow--onhero">property owners · new mexico</p>
               <h1>
-                renting, <em>made light</em>.
+                You bought a rental to work less.{" "}
+                <span className="accent">So work less.</span>
               </h1>
               <p className="lede">
-                for small landlords in albuquerque. type an address and get a
-                management quote or a guaranteed-rent offer — with the math shown,
-                not hidden.
+                Guaranteed rent, full-service management, and the deepest sleep in
+                real estate.
               </p>
-              <p className="hero-note">
-                no account, no wait. the numbers are indicative, and honest about it.
-              </p>
+              <div className="cta-row">
+                <a href="#quote" className="btn btn--hero">
+                  start your siesta
+                </a>
+                <a href="#earn" className="btn-ghost btn-ghost--onhero">
+                  more ways to earn
+                </a>
+              </div>
             </div>
-            <QuoteStudio />
+          </div>
+          <div className="sun-decor" aria-hidden="true" />
+        </section>
+
+        <section className="section" id="quote">
+          <div className="wrap">
+            <div className="section-head" style={{ textAlign: "center", marginInline: "auto" }}>
+              <p className="eyebrow" style={{ justifyContent: "center" }}>
+                about ninety seconds
+              </p>
+              <h2>see your numbers before you commit to anything.</h2>
+            </div>
+            <div style={{ maxWidth: 640, marginInline: "auto" }}>
+              <QuoteStudio />
+            </div>
           </div>
         </section>
 
         <section className="section" id="how">
           <div className="wrap">
             <div className="section-head">
-              <p className="eyebrow">about ninety seconds</p>
-              <h2>a landlord's whole start, in three unhurried steps.</h2>
+              <p className="eyebrow">the whole start</p>
+              <h2>three unhurried steps, then you rest.</h2>
             </div>
             <div className="beats">
               <div className="beat">
@@ -74,6 +99,63 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="section section--warm" id="earn">
+          <div className="wrap">
+            <div className="section-head">
+              <p className="eyebrow">more ways to earn</p>
+              <h2>your property can earn between tenants, too.</h2>
+              <p>
+                guaranteed rent is the floor. when a place sits empty, these two
+                channels turn the downtime into income. both are outside partners —
+                we just point you to them.
+              </p>
+            </div>
+            <div className="earn">
+              <div className="earn-card">
+                <div className="tagrow">
+                  <span className="badge">new mexico film</span>
+                </div>
+                <h3>list it as a film set</h3>
+                <p>
+                  new mexico shoots constantly. put your place on the state's film
+                  location registry and earn when a production needs it — a few
+                  days can pay a month of mortgage.
+                </p>
+                <span className="spacer" />
+                <a
+                  className="ext-link"
+                  href="https://nmfilm.location.pro/list-property"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  list on the nm film registry {ARROW}
+                </a>
+              </div>
+
+              <div className="earn-card">
+                <div className="tagrow">
+                  <span className="badge">by the hour</span>
+                </div>
+                <h3>rent it by the hour</h3>
+                <p>
+                  host meetings, photo shoots, and small gatherings by the hour on
+                  peerspace — a way to earn from the space on the days it would
+                  otherwise sit quiet.
+                </p>
+                <span className="spacer" />
+                <a
+                  className="ext-link"
+                  href="https://www.peerspace.com/host"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  host on peerspace {ARROW}
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="section" id="ladder">
           <div className="wrap">
             <div className="section-head">
@@ -87,7 +169,7 @@ export default function Home() {
             </div>
             <ol className="ladder">
               {LADDER.map((r, i) => (
-                <li className={`rung${r.soon ? " soon" : ""}${r.tag ? " now" : ""}`} key={r.name}>
+                <li className={`rung${r.soon ? " soon" : ""}`} key={r.name}>
                   <span className="step">{String(i + 1).padStart(2, "0")}</span>
                   <span className="name">
                     {r.name}

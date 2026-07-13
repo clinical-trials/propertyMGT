@@ -16,9 +16,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "propertymgt — renting, made light",
+  title: "siesta — the deepest sleep in real estate",
   description:
-    "a property management platform for new mexico. a guaranteed-rent offer or a management quote in about ninety seconds.",
+    "guaranteed rent, full-service management, and the deepest sleep in real estate. a property platform for small landlords in new mexico.",
 };
 
 export default function RootLayout({

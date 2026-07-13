@@ -4,9 +4,9 @@ import SiteFooter from "../_components/SiteFooter";
 import VerifyStudio from "../_components/VerifyStudio";
 
 export const metadata: Metadata = {
-  title: "propertymgt — get vetted once, apply anywhere",
+  title: "siesta — get vetted once, apply anywhere",
   description:
-    "renters verify income, credit, and background once, then apply to any propertymgt listing with a single trusted profile.",
+    "renters verify income, credit, and background once, then apply to any siesta listing with a single trusted profile.",
 };
 
 const HOW: { k: string; free: string; partner: string }[] = [
@@ -41,7 +41,7 @@ export default function Renters() {
               </h1>
               <p className="lede">
                 verify income, credit, and background a single time. then apply to
-                any propertymgt place with one trusted profile — no re-doing it,
+                any siesta place with one trusted profile — no re-doing it,
                 no paying twice.
               </p>
               <p className="hero-note">
