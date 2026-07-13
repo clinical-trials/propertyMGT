@@ -366,9 +366,11 @@ button {
   background: var(--sun);
 }
 .herofull h1 {
-  font-size: clamp(2.7rem, 6.6vw, 5.1rem);
+  font-size: clamp(2.5rem, 6.6vw, 5.1rem);
   color: var(--cream-on-dark);
   letter-spacing: -0.025em;
+  font-weight: 600;
+  line-height: 1.02;
 }
 .herofull h1 .accent {
   color: var(--coral);
@@ -983,6 +985,37 @@ button {
   font-family: var(--font-fraunces);
   font-size: 1.5rem;
   line-height: 1.1;
+}
+
+/* ---- consolidate the hero at the top on phones ---- */
+@media (max-width: 700px) {
+  .topbar .wrap {
+    height: 58px;
+  }
+  .herofull {
+    padding-block: 1.5rem 2.25rem;
+  }
+  .hero-copy {
+    max-width: none;
+  }
+  .eyebrow--onhero {
+    margin-bottom: 0.6rem;
+  }
+  .herofull h1 {
+    font-size: clamp(2.35rem, 8.5vw, 3.4rem);
+    line-height: 1.03;
+  }
+  .herofull .lede {
+    margin-top: 0.85rem;
+    font-size: 1.06rem;
+  }
+  .cta-row {
+    margin-top: 1.2rem;
+  }
+  .sun-decor {
+    top: 6%;
+    opacity: 0.7;
+  }
 }
 
 /* ---- small-screen polish ---- */
