@@ -19,6 +19,7 @@ export default function SiteHeader() {
           <Link href="/#quote">quote</Link>
           <Link href="/#earn">earn more</Link>
           <Link href="/renters">for renters</Link>
+          <Link href="/traveling-nurses">traveling nurses</Link>
         </nav>
 
         <div className="navauth">
@@ -54,6 +55,9 @@ export default function SiteHeader() {
           </Link>
           <Link href="/renters" onClick={close}>
             for renters
+          </Link>
+          <Link href="/traveling-nurses" onClick={close}>
+            traveling nurses
           </Link>
           <Link href="/#quote" className="loginlink" onClick={close}>
             log in
