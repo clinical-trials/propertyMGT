@@ -1247,6 +1247,51 @@ button {
     grid-template-columns: 1fr;
   }
 }
+.tn-readout .frow .k em {
+  font-style: normal;
+  font-size: 0.74rem;
+  margin-left: 0.35rem;
+  padding: 0.06rem 0.45rem;
+  border-radius: 999px;
+}
+.tn-up {
+  color: var(--coral-deep);
+  background: var(--coral-wash);
+}
+.tn-down {
+  color: var(--teal);
+  background: #e5edef;
+}
+.tn-flat {
+  color: var(--ink-faint);
+  background: var(--sand);
+}
+.tn-flag {
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+  color: var(--coral-deep);
+  background: var(--coral-wash);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  line-height: 1.45;
+}
+.tn-cite {
+  margin-top: 1.2rem;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+  max-width: 60ch;
+}
+.tn-cite a,
+.disclaimer a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.tn-cite a:hover,
+.disclaimer a:hover {
+  color: var(--teal-600);
+}
+
 @media (max-width: 520px) {
   .tn-caps {
     flex-direction: column;

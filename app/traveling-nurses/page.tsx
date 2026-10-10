@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const usd = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
-const ABQ_CAP = monthlyCap(144);
+const ABQ_CAP = monthlyCap(MARKETS[0].daily); // albuquerque oct–mar peak
 
 const HOMES = [
   { name: "casita on silver ave", meta: "furnished · 1 bed · 720 sqft", near: "6 min · unmh", rent: 2400 },
@@ -60,7 +60,7 @@ export default function TravelingNurses() {
               <p>
                 sample homes shown — the vertical is just opening, and real
                 furnished listings land here as landlords come on. savings shown
-                against the albuquerque cap of {usd(ABQ_CAP)}/mo.
+                against the albuquerque oct–mar max of {usd(ABQ_CAP)}/mo.
               </p>
             </div>
             <div className="tn-cards">
@@ -96,8 +96,8 @@ export default function TravelingNurses() {
               <h2>the gsa sets your ceiling. we price below it.</h2>
               <p>
                 agencies base your tax-free housing stipend on the federal gsa
-                lodging rate for your assignment. these are the fy2026 monthly caps
-                across new mexico.
+                lodging rate for your assignment. these are the fy2027 monthly
+                maximums across new mexico.
               </p>
             </div>
             <div className="tn-caps">
@@ -112,6 +112,18 @@ export default function TravelingNurses() {
                 </div>
               ))}
             </div>
+            <p className="tn-cite">
+              source:{" "}
+              <a
+                href="https://www.gsa.gov/travel/plan-book/per-diem-rates/per-diem-rates-results?action=perdiems_report&fiscal_year=2027&state=NM&city=&zip="
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                gsa fy2027 per diem rates, new mexico
+              </a>{" "}
+              (oct 1, 2026 – sep 30, 2027). albuquerque and santa fe vary by
+              season; figures show the peak maximum.
+            </p>
           </div>
         </section>
 

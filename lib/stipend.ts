@@ -1,22 +1,51 @@
 // stipend math for the traveling-nurses vertical.
 // travel clinicians are paid a housing stipend capped at the gsa lodging
 // per diem for their assignment's location. price a furnished home under that
-// cap and the difference is theirs, tax-free. numbers are gsa fy2026 lodging
+// cap and the difference is theirs, tax-free. numbers are gsa fy2027 lodging
 // per diem (bernalillo/santa fe/eddy/taos counties), converted to a 30-day month.
+// abq + santa fe are seasonal; daily holds the peak (the true maximum).
 
 export interface Market {
   key: string;
   label: string;
-  daily: number; // gsa fy2026 lodging per diem, $/night
+  daily: number; // gsa fy2027 lodging per diem (peak), $/night
   note?: string;
 }
 
 export const MARKETS: Market[] = [
-  { key: "abq", label: "albuquerque", daily: 144, note: "flat year-round" },
-  { key: "santafe", label: "santa fe", daily: 167, note: "peak · $122 jan–feb" },
-  { key: "carlsbad", label: "carlsbad", daily: 155 },
-  { key: "taos", label: "taos", daily: 128 },
+  { key: "abq", label: "albuquerque", daily: 208, note: "oct–mar max · $154 apr–sep" },
+  { key: "santafe", label: "santa fe", daily: 175, note: "oct & mar–sep · $148 nov–dec · $129 jan–feb" },
+  { key: "carlsbad", label: "carlsbad", daily: 164, note: "flat year-round" },
+  { key: "taos", label: "taos", daily: 128, note: "flat year-round" },
 ];
+
+// contract-length pricing. shorter stays cost more per month (turnover,
+// vacancy, re-marketing); longer stays earn a stability discount. the 4-week
+// "rapid response" is a premium short-term rate — and it sits under 30 days,
+// which is lodging-tax territory, so the premium is deliberately steep.
+export interface Term {
+  weeks: number;
+  label: string;
+  multiplier: number; // vs the 13-week standard rate
+  note?: string;
+}
+
+export const TERMS: Term[] = [
+  { weeks: 4, label: "4 weeks · rapid response", multiplier: 1.45, note: "premium short-term rate · under 30 days" },
+  { weeks: 8, label: "8 weeks", multiplier: 1.1 },
+  { weeks: 13, label: "13 weeks · standard", multiplier: 1 },
+  { weeks: 26, label: "26 weeks", multiplier: 0.9 },
+  { weeks: 39, label: "39 weeks · extended", multiplier: 0.85 },
+];
+
+export function termByWeeks(weeks: number): Term {
+  return TERMS.find((t) => t.weeks === weeks) ?? TERMS[2];
+}
+
+// base rent is the standard 13-week rate; adjust it for the chosen term.
+export function termRent(baseRent: number, weeks: number): number {
+  return Math.round((baseRent * termByWeeks(weeks).multiplier) / 10) * 10;
+}
 
 export const DAYS_PER_MONTH = 30;
 export const WEEKS_PER_MONTH = 4.345;
